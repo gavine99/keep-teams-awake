@@ -2,10 +2,10 @@
  * This is the interval, measured in seconds, at which to run the script.
  * In other words, this is how often the script should run.
  *
- * The default value is 10, so the mouse will be jiggled every 10 seconds.
+ * The default value is 3 minutes.
  * If you want to change how often the script runs, modify this value.
  */
-const intervalSeconds = 10;
+const intervalSeconds = (3 * 60);
 
 /**
  * Convert from seconds to milliseconds, since javascript intervals
@@ -34,7 +34,27 @@ function moveMouse(){
     document.dispatchEvent(evt);
 }
 
+function fetchHostIdle() {
+    try {
+        fetch('http://localhost:21080', {
+            method: 'GET'
+        }).then(result => {  // if not 200 OK response, emulate mouse move
+            if (result.status != 200) {
+                moveMouse()
+                console.log("moveMouse() not ok")
+            }
+        }).catch(error => {  // on error, emulate mouse move
+            moveMouse()
+            console.log("moveMouse() catch promise")
+        });
+    } catch (error) {
+        // on error, emulate mouse move
+        moveMouse()
+        console.log("moveMouse() catch")
+    }
+}
+
 /**
- * Finally, tell the web page to jiggle the mouse at the defined interval.
+ * Finally, tell the web page to check if the host is idle
  */
-setInterval(moveMouse, intervalMillis);
+setInterval(fetchHostIdle, intervalMillis);

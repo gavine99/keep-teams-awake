@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "KeepTeamsAwake",
+  "name": "KeepTeamsAwake-localhostTimeout",
   "version": "1.0.2",
 
   "description": "Prevents the Microsoft Teams website or PWA from sleeping",
