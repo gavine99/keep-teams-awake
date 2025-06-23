@@ -41,16 +41,16 @@ function fetchHostIdle() {
         }).then(result => {  // if not 200 OK response, emulate mouse move
             if (result.status != 200) {
                 moveMouse()
-                console.log("moveMouse() not ok")
+                // console.log("moveMouse() not ok")
             }
         }).catch(error => {  // on error, emulate mouse move
             moveMouse()
-            console.log("moveMouse() catch promise")
+            // console.log("moveMouse() catch promise")
         });
     } catch (error) {
         // on error, emulate mouse move
         moveMouse()
-        console.log("moveMouse() catch")
+        // console.log("moveMouse() catch")
     }
 }
 
