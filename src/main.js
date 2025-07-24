@@ -36,7 +36,10 @@ function moveMouse(){
 
 function fetchHostIdle() {
     try {
-        fetch('http://localhost:21080', {
+        const params = new URLSearchParams();
+        params.append("title", document.title);
+
+        fetch(`http://localhost:21080?${params}`, {
             method: 'GET'
         }).then(result => {  // if not 200 OK response, emulate mouse move
             if (result.status != 200) {
